@@ -1,11 +1,11 @@
 import { ProxyState } from "../AppState.js";
 
 //Private
-function _drawVendor(){
-  let vendor = ProxyState.vendor
+function _drawVendor() {
+  let vend = ProxyState.vendor
   let vendorTemplate = /*html*/`  
   <nav class="navbar navbar-light bg-light">
-        <span class="navbar-brand mb-0 h1">Money Left Over $${vendor.cash}</span>
+        <span class="navbar-brand mb-0 h1 id="vendor">Money Left Over $ ${vend.cash}</span>
       </nav>
   `
   //Need to add the logic to sum the cash - purchase
@@ -18,6 +18,4 @@ export class VendorController{
       ProxyState.on('vendor', _drawVendor)
       _drawVendor()
     }
-    
-    
   }

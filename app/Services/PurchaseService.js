@@ -1,17 +1,23 @@
 import { ProxyState } from "../AppState.js";
+// import { PurchaseController } from "./Controllers/PurchaseController.js";
 
 
+ console.log("Beg of Purch serv")
+
+
+console.log("Vend Service")
 class PurchaseService {
-    runPurchase(purchaseCost) {
-        let purchase = ProxyState.purchase.find(p => p.cost == purchaseCost)
+    runPurchase(item) {
+        
+        let purchase = ProxyState.purchase.find(p => p.cost == item)
         if (ProxyState.vendor.cash >= purchase.cost) {
-            ProxyState.cash -= purchase.cost
+            let total = ProxyState.cash -= purchase
+            ProxyState.vendor.cash.push(total)
+            ProxyState.vendor = ProxyState.vendor
+            console.log(total)
         }
-        ProxyState.vendor.cash.push(purchase)
-        ProxyState.vendor = ProxyState.vendor
-        console.log(Proxystate.vendor.cash)
     }
 }
 export const purchaseService = new PurchaseService()
 
-//Dont really need a conditonal as it is buttons selections.
+
